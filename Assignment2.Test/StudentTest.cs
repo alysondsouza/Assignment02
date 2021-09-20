@@ -9,7 +9,7 @@ namespace Assignment2.Test
         [Fact]
         public void Student_getStatus_givenDateBeforeStart_returnEnumNew()
         {
-            DateTime start = new DateTime(2021, 09, 19);
+            DateTime start = new DateTime(2021, 09, 21);
             DateTime end = new DateTime(2022, 09, 21);
             DateTime graduation = new DateTime(2023, 09, 21);
 
