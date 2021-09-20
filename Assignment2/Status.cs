@@ -6,5 +6,6 @@ namespace Assignment2
         Active,
         Dropout,
         Graduated,
+        fail,
     }  
 }

@@ -9,23 +9,59 @@ namespace Assignment2.Test
         [Fact]
         public void Student_getStatus_givenDateBeforeStart_returnEnumNew()
         {
-            DateTime start = new DateTime(2021, 09, 21);
-            DateTime end = new DateTime(2022, 09, 21);
-            DateTime graduation = new DateTime(2023, 09, 21);
+            DateTime today = DateTime.Now;
+            DateTime start = today.AddMonths(1);
+            DateTime end = today.AddMonths(2);
+            DateTime graduation = today.AddMonths(3);
 
             Student ali = new Student(1, "Ali", "De Souza", start, end, graduation);
-            //Student ali = new Student();
-            //ali.id = 1;
-            //ali.givenName = "Ali";
-            //ali.surname = "De Souza";
-            //ali.startDate = 2021/09/21;
-            //ali.endDate = 21/09/2022;
-            //ali.graduationDate = 21/09/2021;
-
             Status expectedNEW = Status.New;
 
             Assert.Equal(expectedNEW, ali.getStatus(start, end, graduation));
-            //Assert.Equal("1", "2");
         }
+
+        [Fact]
+        public void Student_getStatus_givenDateAfterStartAndBeforeEnd_returnEnumActive()
+        {
+            DateTime today = DateTime.Now;
+            DateTime start = today.AddMonths(-1);
+            DateTime end = today.AddMonths(1);
+            DateTime graduation = today.AddMonths(2);
+
+            Student ali = new Student(1, "Ali", "De Souza", start, end, graduation);
+            Status expectedNEW = Status.Active;
+
+            Assert.Equal(expectedNEW, ali.getStatus(start, end, graduation));
+        }
+
+        [Fact]
+        public void Student_getStatus_givenDateAfterStartAndAfterEnd_returnEnumDropout()
+        {
+            DateTime today = DateTime.Now;
+            DateTime start = today.AddMonths(-2);
+            DateTime end = today.AddMonths(-1);
+            DateTime graduation = today.AddMonths(1);
+
+            Student ali = new Student(1, "Ali", "De Souza", start, end, graduation);
+            Status expectedNEW = Status.Dropout;
+
+            Assert.Equal(expectedNEW, ali.getStatus(start, end, graduation));
+        }
+
+        [Fact]
+        public void Student_getStatus_givenDateAfterGraduation_returnEnumGraduated()
+        {
+            DateTime today = DateTime.Now;
+            DateTime start = today.AddMonths(-3);
+            DateTime end = today.AddMonths(-2);
+            DateTime graduation = today.AddMonths(-1);
+
+            Student ali = new Student(1, "Ali", "De Souza", start, end, graduation);
+            Status expectedNEW = Status.Graduated;
+
+            Assert.Equal(expectedNEW, ali.getStatus(start, end, graduation));
+        }
+
+
     }
 }

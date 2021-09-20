@@ -13,17 +13,13 @@ namespace Assignment2
         int id {get;}
         string givenName {get; set;}
         string surname {get; set;}
-
-        //readonly 
-        Status status;//{ get => getStatus();}
+ 
+        readonly Status status;//{ get => getStatus();}
 
         DateTime startDate;
         DateTime endDate;
         DateTime graduationDate;
-
-        Status s;
-
-    
+  
         public Student(){}
 
         public Student(int id, string givenName, string surname, DateTime startDate, DateTime endDate, DateTime graduationDate){
@@ -39,20 +35,28 @@ namespace Assignment2
         public Status getStatus(DateTime startDate, DateTime endDate, DateTime graduationDate){
             
             DateTime rightNow = DateTime.Now;
+            Status s = new Status();
+            //NEW
+            int nowStart = DateTime.Compare(rightNow, startDate); //-1, 0, 1  <0 id date1 < date2
+            int nowEnd = DateTime.Compare(rightNow, endDate); 
+            int graduateNow = DateTime.Compare(rightNow, graduationDate); 
 
-            if(rightNow < startDate){
-                Status s = Status.New;
-            }
+            if(nowStart == -1){
+                s = Status.New;
+            } else if(graduateNow == 1){
+                s =  Status.Graduated;
+            } else if(nowStart == 1 && nowEnd == -1){
+                s =  Status.Active;
+            } else if(nowStart == 1 && nowEnd == 1){
+                s =  Status.Dropout;
+            } 
 
-
+            return s;
             //IF
             // NOW - START          .... NEW   
             // START -  NOW - END   ....ACTIVE   
             // START - END - NOW    ....DROPOUT
             // GRADUATED - NOW      ...GRADUATED
-            
-
-            return s;
         }
         
     }
