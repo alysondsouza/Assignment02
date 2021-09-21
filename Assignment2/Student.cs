@@ -8,21 +8,34 @@ namespace Assignment2
         {
             Console.WriteLine("Hello World!");
             Console.WriteLine(DateTime.Now); // 20/09/2021 12.23.32
+            
+            /* 
+            Implemented toString() method, tried testing it
+            Student s = new Student()
+            s.id = 18
+            s.name = "Tessa"
+
+            s.toString(); 
+            */
         }
 
         int id {get;}
         string givenName {get; set;}
         string surname {get; set;}
  
-        readonly Status status;//{ get => getStatus();}
+        readonly Status status; //{ get => getStatus();}
 
         DateTime startDate;
         DateTime endDate;
         DateTime graduationDate;
   
-        public Student(){}
+        public Student()
+        {
+            // This is empty
+        }
 
-        public Student(int id, string givenName, string surname, DateTime startDate, DateTime endDate, DateTime graduationDate){
+        public Student(int id, string givenName, string surname, DateTime startDate, DateTime endDate, DateTime graduationDate)
+        {
             this.id = id;
             this.givenName = givenName;
             this.surname = surname;
@@ -32,7 +45,8 @@ namespace Assignment2
             this.graduationDate = graduationDate;
         }
 
-        public Status getStatus(DateTime startDate, DateTime endDate, DateTime graduationDate){
+        public Status getStatus(DateTime startDate, DateTime endDate, DateTime graduationDate)
+        {
             
             DateTime rightNow = DateTime.Now;
             Status s = new Status();
@@ -58,6 +72,10 @@ namespace Assignment2
             // START - END - NOW    ....DROPOUT
             // GRADUATED - NOW      ...GRADUATED
         }
-        
+
+        public override string toString()
+        {
+            return $"Id: {id}, given name: {givenName}, surname: {surname}, start date: {startDate}, end date: {endDate}, graduation date: {graduationDate}";
+        }
     }
 }
