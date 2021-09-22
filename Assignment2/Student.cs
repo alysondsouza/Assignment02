@@ -9,7 +9,7 @@ namespace Assignment2
             DateTime t = DateTime.Now;
             Student ali = new Student(1, "Ali", "De Souza", t.AddMonths(-1), t.AddMonths(1), t.AddMonths(2));
             Console.WriteLine(ali.ToString());
-            Student immutableAli = new Student(2, "Alyson", "De Souza", t.AddMonths(-2), t.AddMonths(-1), t.AddMonths(1));
+            ImmutableStudent immutableAli = new ImmutableStudent(2, "Alyson", "De Souza", t.AddMonths(-2), t.AddMonths(-1), t.AddMonths(1));
             Console.WriteLine(immutableAli.ToString());
             Console.WriteLine(DateTime.Now);
             //Action SetUp
@@ -19,7 +19,8 @@ namespace Assignment2
         string givenName {get; set;}
         string surname {get; set;}
 
-        Status status; //{ get => getStatus();}
+		//readonly
+        Status status { get => getStatus(startDate, endDate, graduationDate);}
 
         DateTime startDate;
         DateTime endDate;
@@ -31,7 +32,7 @@ namespace Assignment2
             this.id = id;
             this.givenName = givenName;
             this.surname = surname;
-            this.status = getStatus(startDate, endDate, graduationDate);
+            //this.status = getStatus(startDate, endDate, graduationDate);
             this.startDate = startDate;
             this.endDate = endDate;
             this.graduationDate = graduationDate;
@@ -64,10 +65,11 @@ namespace Assignment2
             // GRADUATED - NOW      ...GRADUATED
         }
         
-        public string ToString()
+        public override string ToString()
         {
-            return "Student :" + id + ", Name: " + givenName + " " + surname + ". Status: " + status + ". Start: " + startDate + " End: " + endDate + " Graduation: " + graduationDate;
-        }
+            //return "Student :" + id + ", Name: " + givenName + " " + surname + ". Status: " + status + ". Start: " + startDate + " End: " + endDate + " Graduation: " + graduationDate;
+			return $"Id: {id}, given name: {givenName}, surname: {surname}, status: {status}, start date: {startDate}, end date: {endDate}, graduation date: {graduationDate}";
+		}
         
         
     }
