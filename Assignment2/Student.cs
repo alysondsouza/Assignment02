@@ -6,15 +6,19 @@ namespace Assignment2
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine(DateTime.Now); // 20/09/2021 12.23.32
+            DateTime t = DateTime.Now;
+            Student ali = new Student(1, "Ali", "De Souza", t.AddMonths(-1), t.AddMonths(1), t.AddMonths(2));
+            Console.WriteLine(ali.ToString());
+            Student immutableAli = new Student(2, "Alyson", "De Souza", t.AddMonths(-2), t.AddMonths(-1), t.AddMonths(1));
+            Console.WriteLine(immutableAli.ToString());
+            Console.WriteLine(DateTime.Now);
         }
 
         int id {get;}
         string givenName {get; set;}
         string surname {get; set;}
- 
-        readonly Status status;//{ get => getStatus();}
+
+        Status status; //{ get => getStatus();}
 
         DateTime startDate;
         DateTime endDate;
@@ -26,7 +30,7 @@ namespace Assignment2
             this.id = id;
             this.givenName = givenName;
             this.surname = surname;
-            //this.status = getStatus();
+            this.status = getStatus(startDate, endDate, graduationDate);
             this.startDate = startDate;
             this.endDate = endDate;
             this.graduationDate = graduationDate;
@@ -36,7 +40,7 @@ namespace Assignment2
             
             DateTime rightNow = DateTime.Now;
             Status s = new Status();
-            //NEW
+
             int nowStart = DateTime.Compare(rightNow, startDate); //-1, 0, 1  <0 id date1 < date2
             int nowEnd = DateTime.Compare(rightNow, endDate); 
             int graduateNow = DateTime.Compare(rightNow, graduationDate); 
@@ -58,6 +62,12 @@ namespace Assignment2
             // START - END - NOW    ....DROPOUT
             // GRADUATED - NOW      ...GRADUATED
         }
+        
+        public string ToString()
+        {
+            return "Student :" + id + ", Name: " + givenName + " " + surname + ". Status: " + status + ". Start: " + startDate + " End: " + endDate + " Graduation: " + graduationDate;
+        }
+        
         
     }
 }
