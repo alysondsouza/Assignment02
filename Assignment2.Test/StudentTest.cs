@@ -29,9 +29,9 @@ namespace Assignment2.Test
             DateTime graduation = today.AddMonths(2);
 
             Student ali = new Student(1, "Ali", "De Souza", start, end, graduation);
-            Status expectedNEW = Status.Active;
+            Status expectedACTIVE = Status.Active;
 
-            Assert.Equal(expectedNEW, ali.getStatus(start, end, graduation));
+            Assert.Equal(expectedACTIVE, ali.getStatus(start, end, graduation));
         }
 
         [Fact]
@@ -43,9 +43,9 @@ namespace Assignment2.Test
             DateTime graduation = today.AddMonths(1);
 
             Student ali = new Student(1, "Ali", "De Souza", start, end, graduation);
-            Status expectedNEW = Status.Dropout;
+            Status expectedDROPOUT = Status.Dropout;
 
-            Assert.Equal(expectedNEW, ali.getStatus(start, end, graduation));
+            Assert.Equal(expectedDROPOUT, ali.getStatus(start, end, graduation));
         }
 
         [Fact]
@@ -57,11 +57,22 @@ namespace Assignment2.Test
             DateTime graduation = today.AddMonths(-1);
 
             Student ali = new Student(1, "Ali", "De Souza", start, end, graduation);
-            Status expectedNEW = Status.Graduated;
+            Status expectedGRAD = Status.Graduated;
 
-            Assert.Equal(expectedNEW, ali.getStatus(start, end, graduation));
+            Assert.Equal(expectedGRAD, ali.getStatus(start, end, graduation));
         }
 
+        [Fact]
+        public void Student_toString_givenStudent_returnString()
+        {
+            DateTime start = new DateTime(2021, 09, 22);
+            DateTime end = new DateTime(2021, 09, 22);
+            DateTime graduation = new DateTime(2021, 09, 22);
+            Student ali = new Student(1, "Ali", "De Souza", start, end, graduation);
 
+			string expected = "Id: 1, given name: Ali, surname: De Souza, status: Graduated, start date: 22/09/2021 00.00.00, end date: 22/09/2021 00.00.00, graduation date: 22/09/2021 00.00.00";
+
+            Assert.Equal(expected, ali.ToString());
+        }
     }
 }
