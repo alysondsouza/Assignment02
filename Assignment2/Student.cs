@@ -12,6 +12,7 @@ namespace Assignment2
             Student immutableAli = new Student(2, "Alyson", "De Souza", t.AddMonths(-2), t.AddMonths(-1), t.AddMonths(1));
             Console.WriteLine(immutableAli.ToString());
             Console.WriteLine(DateTime.Now);
+            //Action SetUp
         }
 
         int id {get;}
